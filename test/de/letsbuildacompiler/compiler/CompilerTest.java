@@ -57,8 +57,9 @@ public class CompilerTest {
     @DataProvider
     public Object[][] provideCodeExpectedText() {
         return new Object[][] {
-                { "1+2", "3\n" },
-                { "1+2+42", "45\n" }
+                { "println(1+2);", "3\n" },
+                { "println(1+2+42);", "45\n" },
+                { "println(1); println(2);", "1\n 2\n" },
         };
     }
 
