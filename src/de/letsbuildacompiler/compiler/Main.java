@@ -12,12 +12,17 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         ANTLRInputStream input = new ANTLRFileStream("code.demo"); //Lesen hier unsere Demo Datei ein
+        System.out.println(compile(input));
+    }
+
+    public static String compile(ANTLRInputStream input) {
+
         DemoLexer lexer = new DemoLexer(input); //Lexer der den input bekommt | liest Zeichenstream und unterteilt stream in Token
         CommonTokenStream tokens = new CommonTokenStream(lexer); //liest Token ein
         DemoParser parser = new DemoParser(tokens); //parser wird mit Token gefüttert
 
         ParseTree tree = parser.addition(); //Regel mit der der Parser anfangen soll zu parsen
-        System.out.println(createJasminFile(new MyVisitor().visit(tree))); //Visitor wird parsetree übergeben mit Jasmine File
+        return createJasminFile(new MyVisitor().visit(tree)); //Visitor wird parsetree übergeben mit Jasmine File
     }
 
     private static String createJasminFile(String instructions) {
