@@ -17,6 +17,7 @@ public class MyVisitor extends DemoBaseVisitor<String> {
         return "ldc " + ctx.zahl.getText(); //ldc = load constance
     }
 
+    //Test
     @Override
     protected String aggregateResult(String aggregate, String nextResult) {
         if (aggregate == null) {
