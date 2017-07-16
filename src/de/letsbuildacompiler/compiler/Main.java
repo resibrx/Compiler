@@ -12,10 +12,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         ANTLRInputStream input = new ANTLRFileStream("code.demo"); //Lesen hier unsere Demo Datei ein
-        System.out.println(compile(input));
+        System.out.println(compileToJasminCode(input));
     }
 
-    public static String compile(ANTLRInputStream input) {
+    public static String compileToJasminCode(ANTLRInputStream input) {
 
         DemoLexer lexer = new DemoLexer(input); //Lexer der den input bekommt | liest Zeichenstream und unterteilt stream in Token
         CommonTokenStream tokens = new CommonTokenStream(lexer); //liest Token ein
