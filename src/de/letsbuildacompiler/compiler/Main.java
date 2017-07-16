@@ -21,7 +21,7 @@ public class Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer); //liest Token ein
         DemoParser parser = new DemoParser(tokens); //parser wird mit Token gefüttert
 
-        ParseTree tree = parser.addition(); //Regel mit der der Parser anfangen soll zu parsen
+        ParseTree tree = parser.program(); //Regel mit der der Parser anfangen soll zu parsen
         return createJasminFile(new MyVisitor().visit(tree)); //Visitor wird parsetree übergeben mit Jasmine File
     }
 
@@ -32,10 +32,10 @@ public class Main {
                 ".method public static main([Ljava/lang/String;)V\n" +
                 "  .limit stack 100\n" + //kann 100 aufnehmen
                 "  .limit locals 100\n" +
-                "  getstatic java/lang/System/out Ljava/io/PrintStream;\n" + //wie Syso 
+                " \n" +
                 instructions + "\n" +
-                "  invokevirtual java/io/PrintStream/println(I)V\n" + //nimmt so viele Objekte vom Stack wie viele Parameter es hat
                 "  return\n" +
+                " \n" +
                 ".end method";
     }
 }
