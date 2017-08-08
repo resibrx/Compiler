@@ -17,13 +17,24 @@ public class MyVisitor extends DemoBaseVisitor<String> {
     @Override
     public String visitPlus(PlusContext ctx) { //Label 1
         return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
-                "ldc " + ctx.rechts.getText() + "\n" +
                 "iadd";
+    }
+    
+    @Override
+    public String visitMinus(MinusContext ctx) { //Label 1
+        return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
+                "isub";
+    }
+    
+    @Override
+    public String visitMult(MultContext ctx) { //Label 1
+        return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
+                "imult";
     }
 
     @Override
-    public String visitZahl(ZahlContext ctx) { //Label 2
-        return "ldc " + ctx.zahl.getText(); //ldc = load constance
+    public String visitNumber(NumberContext ctx) { //Label 2
+        return "ldc " + ctx.number.getText(); //ldc = load constance
     }
 
     //Test

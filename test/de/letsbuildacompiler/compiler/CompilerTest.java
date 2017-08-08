@@ -60,6 +60,10 @@ public class CompilerTest {
                 { "println(1+2);", "3\n" },
                 { "println(1+2+42);", "45\n" },
                 { "println(1); println(2);", "1\n2\n" },
+                { "println(3-2);", "1\n" },
+                { "println(2*3);", "6\n" },
+                { "println(2+3*3);", "11\n" },
+                { "println(9-2*3);", "3\n" },
         };
     }
 
