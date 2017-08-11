@@ -12,6 +12,7 @@
 			<groupId>alandipert</groupId>
 			<artifactId>jasmin</artifactId>
 			<version>2.4.0</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
