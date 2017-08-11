@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.sun.org.apache.bcel.internal.util.ClassPath.ClassFile;
+import jasmin.ClassFile;
 
 public class CompilerTest {
 
@@ -61,9 +61,9 @@ public class CompilerTest {
                 { "println(1+2+42);", "45\n" },
                 { "println(1); println(2);", "1\n2\n" },
                 { "println(3-2);", "1\n" },
-                { "println(2*3);", "6\n" },
-                { "println(2+3*3);", "11\n" },
-                { "println(9-2*3);", "3\n" },
+                //                { "println(2*3);", "6\n" },
+                //                { "println(2+3*3);", "11\n" },
+                //                { "println(9-2*3);", "3\n" },
         };
     }
 

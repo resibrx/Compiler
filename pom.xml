@@ -49,6 +49,8 @@
 				<configuration>
 					<outputDirectory>${project.build.directory}/generated-sources/de/letsbuildacompiler/parser</outputDirectory>
 					<arguments>
+						<argument>-no-listener</argument>
+						<argument>-visitor</argument>
 						<argument>-package</argument>
 						<argument>de.letsbuildacompiler.parser</argument>
 					</arguments>

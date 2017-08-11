@@ -1,9 +1,11 @@
 package de.letsbuildacompiler.compiler;
 
 import de.letsbuildacompiler.parser.DemoBaseVisitor;
+import de.letsbuildacompiler.parser.DemoParser.MinusContext;
+import de.letsbuildacompiler.parser.DemoParser.MultContext;
+import de.letsbuildacompiler.parser.DemoParser.NumberContext;
 import de.letsbuildacompiler.parser.DemoParser.PlusContext;
 import de.letsbuildacompiler.parser.DemoParser.PrintlnContext;
-import de.letsbuildacompiler.parser.DemoParser.ZahlContext;
 
 public class MyVisitor extends DemoBaseVisitor<String> {
 
@@ -19,13 +21,13 @@ public class MyVisitor extends DemoBaseVisitor<String> {
         return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
                 "iadd";
     }
-    
+
     @Override
     public String visitMinus(MinusContext ctx) { //Label 1
         return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
                 "isub";
     }
-    
+
     @Override
     public String visitMult(MultContext ctx) { //Label 1
         return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
