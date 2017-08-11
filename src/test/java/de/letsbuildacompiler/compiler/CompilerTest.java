@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import jasmin.ClassFile;
+import com.sun.org.apache.bcel.internal.util.ClassPath.ClassFile;
 
 public class CompilerTest {
 
