@@ -1,0 +1,10 @@
+language: java
+
+sudo: false
+
+install: true
+
+script: mvn clean antlr4:antlr4 test
+
+jdk:
+- oraclejdk8
