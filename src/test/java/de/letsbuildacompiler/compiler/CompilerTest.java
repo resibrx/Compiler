@@ -65,9 +65,10 @@ public class CompilerTest {
                 { "println(2+3*3);", "11\n" },
                 { "println(9-2*3);", "3\n" },
                 { "println(2*8/4);", "4\n" },
-                // { "println(8-2+5);", "11\n" },
+                { "println(8+2-5);", "5\n" },
+                { "println(8-2+5);", "11\n" },
 
-                { "int foo; foo = 42; println(foo);", "42\n" },
+                { "int foo;", "42\n" },
                 { "int foo; foo = 42; println(foo+2);", "44\n" },
                 { "int a; int b; a = 2; b = 5; println(a);", "42\n" },
         };
@@ -92,6 +93,7 @@ public class CompilerTest {
     private String runJavaClass(Path dir, String className) throws Exception {
         //neuen Java Prozess starten (zur Sicherheit damit alles seperat ist)
         Process process = Runtime.getRuntime().exec(new String[] { "java", "-cp", dir.toString(), className });
+        //System.err.println(IOUtils.toString(process.getInputStream(), "UTF-8"));
 
         //vom Prozess den Outputstream holen welcher für uns der Inputsream ist
         try (InputStream in = process.getInputStream()) {
