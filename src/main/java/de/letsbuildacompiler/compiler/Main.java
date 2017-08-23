@@ -5,8 +5,8 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import de.letsbuildacompiler.parser.DemoLexer;
-import de.letsbuildacompiler.parser.DemoParser;
+import de.letsbuildacompiler.parser.ResiLexer;
+import de.letsbuildacompiler.parser.ResiParser;
 
 public class Main {
 
@@ -17,9 +17,9 @@ public class Main {
 
     public static String compileToJasminCode(ANTLRInputStream input) {
 
-        DemoLexer lexer = new DemoLexer(input); //Lexer der den input bekommt | liest Zeichenstream und unterteilt stream in Token
+        ResiLexer lexer = new ResiLexer(input); //Lexer der den input bekommt | liest Zeichenstream und unterteilt stream in Token
         CommonTokenStream tokens = new CommonTokenStream(lexer); //liest Token ein
-        DemoParser parser = new DemoParser(tokens); //parser wird mit Token gefüttert
+        ResiParser parser = new ResiParser(tokens); //parser wird mit Token gefüttert
 
         ParseTree tree = parser.program(); //Regel mit der der Parser anfangen soll zu parsen
         return createJasminFile(new MyVisitor().visit(tree)); //Visitor wird parsetree übergeben mit Jasmine File

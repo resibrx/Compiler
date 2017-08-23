@@ -1,13 +1,22 @@
 package de.letsbuildacompiler.compiler;
 
-import de.letsbuildacompiler.parser.DemoBaseVisitor;
-import de.letsbuildacompiler.parser.DemoParser.MinusContext;
-import de.letsbuildacompiler.parser.DemoParser.MultContext;
-import de.letsbuildacompiler.parser.DemoParser.NumberContext;
-import de.letsbuildacompiler.parser.DemoParser.PlusContext;
-import de.letsbuildacompiler.parser.DemoParser.PrintlnContext;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MyVisitor extends DemoBaseVisitor<String> {
+import de.letsbuildacompiler.parser.ResiBaseVisitor;
+import de.letsbuildacompiler.parser.ResiParser.AssignmentContext;
+import de.letsbuildacompiler.parser.ResiParser.DivContext;
+import de.letsbuildacompiler.parser.ResiParser.MinusContext;
+import de.letsbuildacompiler.parser.ResiParser.MultContext;
+import de.letsbuildacompiler.parser.ResiParser.NumberContext;
+import de.letsbuildacompiler.parser.ResiParser.PlusContext;
+import de.letsbuildacompiler.parser.ResiParser.PrintlnContext;
+import de.letsbuildacompiler.parser.ResiParser.VarDeclarationContext;
+import de.letsbuildacompiler.parser.ResiParser.VariableContext;
+
+public class MyVisitor extends ResiBaseVisitor<String> {
+
+    private Map<String, Integer> variables = new HashMap<>();
 
     @Override
     public String visitPrintln(PrintlnContext ctx) {
@@ -23,20 +32,44 @@ public class MyVisitor extends DemoBaseVisitor<String> {
     }
 
     @Override
-    public String visitMinus(MinusContext ctx) { //Label 1
-        return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
+    public String visitMinus(MinusContext ctx) {
+        return visitChildren(ctx) + "\n" +
                 "isub";
     }
 
     @Override
-    public String visitMult(MultContext ctx) { //Label 1
-        return visitChildren(ctx) + "\n" + //visitChildren: Subknoten
-                "imult";
+    public String visitDiv(DivContext ctx) {
+        return visitChildren(ctx) + "\n" +
+                "idiv";
     }
 
     @Override
-    public String visitNumber(NumberContext ctx) { //Label 2
-        return "ldc " + ctx.number.getText(); //ldc = load constance
+    public String visitMult(MultContext ctx) {
+        return visitChildren(ctx) + "\n" +
+                "imul";
+    }
+
+    @Override
+    public String visitNumber(NumberContext ctx) {
+        return "ldc " + ctx.number.getText();
+    }
+
+    @Override
+    public String visitVarDeclaration(VarDeclarationContext ctx) {
+        //wir können uns nur den Index ausgeben und nicht "gib mir die variable a, b, .."
+        variables.put(ctx.varName.getText(), variables.size());
+        return "";
+    }
+
+    @Override
+    public String visitAssignment(AssignmentContext ctx) {
+        return visit(ctx.expr) + "\n" +
+                "istore" + variables.get(ctx.varName.getText()); //nimmt obersten integer vom stack und speichert in tabelle
+    }
+
+    @Override
+    public String visitVariable(VariableContext ctx) {
+        return "iload" + variables.get(ctx.varName.getText()); //nimmt variable an der defin. position und legt sie wieder oben auf den stack
     }
 
     //Test

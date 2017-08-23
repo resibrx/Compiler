@@ -61,9 +61,15 @@ public class CompilerTest {
                 { "println(1+2+42);", "45\n" },
                 { "println(1); println(2);", "1\n2\n" },
                 { "println(3-2);", "1\n" },
-                //                { "println(2*3);", "6\n" },
-                //                { "println(2+3*3);", "11\n" },
-                //                { "println(9-2*3);", "3\n" },
+                { "println(2*3);", "6\n" },
+                { "println(2+3*3);", "11\n" },
+                { "println(9-2*3);", "3\n" },
+                { "println(2*8/4);", "4\n" },
+                // { "println(8-2+5);", "11\n" },
+
+                { "int foo; foo = 42; println(foo);", "42\n" },
+                { "int foo; foo = 42; println(foo+2);", "44\n" },
+                { "int a; int b; a = 2; b = 5; println(a);", "42\n" },
         };
     }
 
